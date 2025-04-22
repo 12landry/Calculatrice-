@@ -1,4 +1,4 @@
-générateur d'exercice 
+ générateur d'exercice 
 
 Parfait, détaillons le Générateur d'exercices de maths ! C’est un projet super utile et intéressant à faire, surtout pour toi qui fais des études de maths.
 
