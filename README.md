@@ -1,173 +1,77 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculatrice Style</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+Projet : Calculatrice Web
 
-    body {
-      margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background: #000;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+1. Objectif du projet
 
-    .calculator {
-      width: 320px;
-      background: #1c1c1c;
-      border-radius: 30px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
+Créer une application web simple qui permet d’effectuer des opérations de base comme :
 
-    .display {
-      background: black;
-      padding: 30px 20px;
-      font-size: 48px;
-      text-align: right;
-      min-height: 80px;
-      color: white;
-    }
+L’addition (+)
 
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-    }
+La soustraction (−)
 
-    button {
-      font-size: 24px;
-      padding: 20px 0;
-      border: none;
-      outline: none;
-      color: white;
-      background: #333;
-      transition: background 0.2s;
-    }
+La multiplication (×)
 
-    button:active {
-      background: #444;
-    }
+La division (÷)
 
-    .operator {
-      background: #ff9500;
-    }
 
-    .operator:active {
-      background: #e08900;
-    }
 
-    .gray {
-      background: #a5a5a5;
-      color: black;
-    }
+---
 
-    .zero {
-      grid-column: span 2;
-    }
-  </style>
-</head>
-<body>
-  <div class="calculator">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <button class="gray" onclick="clearDisplay()">AC</button>
-      <button class="gray" onclick="toggleSign()">+/-</button>
-      <button class="gray" onclick="percent()">%</button>
-      <button class="operator" onclick="inputOperator('/')">÷</button>
+2. Technologies utilisées
 
-      <button onclick="inputNumber('7')">7</button>
-      <button onclick="inputNumber('8')">8</button>
-      <button onclick="inputNumber('9')">9</button>
-      <button class="operator" onclick="inputOperator('*')">×</button>
+HTML : structure de la page
 
-      <button onclick="inputNumber('4')">4</button>
-      <button onclick="inputNumber('5')">5</button>
-      <button onclick="inputNumber('6')">6</button>
-      <button class="operator" onclick="inputOperator('-')">−</button>
+CSS : mise en forme et design
 
-      <button onclick="inputNumber('1')">1</button>
-      <button onclick="inputNumber('2')">2</button>
-      <button onclick="inputNumber('3')">3</button>
-      <button class="operator" onclick="inputOperator('+')">+</button>
+JavaScript : logique de la calculatrice
 
-      <button class="zero" onclick="inputNumber('0')">0</button>
-      <button onclick="inputNumber('.')">.</button>
-      <button class="operator" onclick="calculate()">=</button>
-    </div>
-  </div>
+Git & GitHub : gestion de version et publication
 
-  <script>
-    let currentInput = '0';
-    let operator = '';
-    let previousInput = '';
 
-    const display = document.getElementById('display');
 
-    function updateDisplay() {
-      display.textContent = currentInput;
-    }
+---
 
-    function inputNumber(num) {
-      if (currentInput === '0' && num !== '.') {
-        currentInput = num;
-      } else {
-        currentInput += num;
-      }
-      updateDisplay();
-    }
+3. Structure du projet
 
-    function inputOperator(op) {
-      if (currentInput === '') return;
-      if (previousInput !== '') calculate();
-      operator = op;
-      previousInput = currentInput;
-      currentInput = '';
-    }
+Voici les fichiers principaux :
 
-    function clearDisplay() {
-      currentInput = '0';
-      previousInput = '';
-      operator = '';
-      updateDisplay();
-    }
+calculatrice-html/
+│
+├── index.html        // Fichier principal HTML
+├── style.css         // Fichier de styles
+├── script.js         // Logique de la calculatrice
+└── README.md         // Présentation du projet sur GitHub
 
-    function toggleSign() {
-      currentInput = (parseFloat(currentInput) * -1).toString();
-      updateDisplay();
-    }
 
-    function percent() {
-      currentInput = (parseFloat(currentInput) / 100).toString();
-      updateDisplay();
-    }
+---
 
-    function calculate() {
-      if (previousInput === '' || currentInput === '') return;
-      const prev = parseFloat(previousInput);
-      const curr = parseFloat(currentInput);
-      let result = 0;
+4. Détails du code
 
-      switch (operator) {
-        case '+': result = prev + curr; break;
-        case '-': result = prev - curr; break;
-        case '*': result = prev * curr; break;
-        case '/': result = prev / curr; break;
-      }
+index.html
 
-      currentInput = result.toString();
-      operator = '';
-      previousInput = '';
-      updateDisplay();
-    }
-  </script>
-</body>
-</html>
+Ce fichier contient l’interface utilisateur :
+
+Un écran pour afficher les chiffres saisis et le résultat
+
+Des boutons pour chaque chiffre et chaque opération
+
+
+style.css
+
+Contient les styles pour rendre l’application plus jolie :
+
+Organisation des boutons
+
+Couleurs et tailles
+
+Mise en page centrée
+
+
+script.js
+
+C’est ici que la logique de la calculatrice est définie :
+
+Ajouter un chiffre ou un opérateur à l’écran
+
+Effacer le contenu
+
+Calculer le résultat avec eval()
