@@ -64,4 +64,6 @@ def calculatrice():
 
         else:
             print("Choix invalide.")
-            
+
+# Lancer la calculatrice
+calculatrice()
